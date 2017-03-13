@@ -29,7 +29,7 @@ router.get('/', function (req, res, next) {
             console.log("Message %s sent: %s ", info.messageId, info.response);
         });
         clearTimeout(timer);
-    }, parseInt(req.query.time) * 3600);
+    }, parseInt(req.query.time) * 60000);
 
 
     res.json({msg: 'Successfully Registered.'});
