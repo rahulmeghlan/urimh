@@ -10,25 +10,30 @@ var transporter = nodeMailer.createTransport({
     }
 });
 
-var mailOpt = {
-    from: "meghlantest@gmail.com",
-    to: "rahulmeghlan@gmail.com",
-    subject: 'Hello ✔', // Subject line
-    text: 'Hello world ?', // plain text body
-    html: '<b>Hello world ?</b>' // html body
-};
-
-transporter.sendMail(mailOpt, function (err, info) {
-    if (err) {
-        return console.log(err);
-    }
-    console.log("Message %s sent: %s ", info.messageId, info.response);
-});
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    console.log(req.query);
-    res.render('index', {title: 'Express', params: JSON.stringify(req.query)});
+    var mailOpt = {
+        from: "uareinmyhead@gmail.com",
+        to: req.query.email,
+        subject: 'You are in my head ✔', // Subject line
+        html: '<p>' + req.query.question + '</p>' // html body
+    };
+
+
+    var timer = setTimeout(function () {
+        transporter.sendMail(mailOpt, function (err, info) {
+            if (err) {
+                return console.log(err);
+            }
+            console.log("Message %s sent: %s ", info.messageId, info.response);
+        });
+        clearTimeout(timer);
+    }, parseInt(req.query.time) * 3600);
+
+
+    res.json({msg: 'Successfully Registered.'});
 });
+
 
 module.exports = router;
