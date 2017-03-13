@@ -5,8 +5,8 @@ var nodeMailer = require('nodemailer');
 var transporter = nodeMailer.createTransport({
     service: "gmail",
     auth: {
-        user: "meghlantest@gmail.com",
-        pass: "password@1234"
+        user: "uareinmyhead@gmail.com",
+        pass: "uareinmyhead@123"
     }
 });
 
@@ -14,7 +14,7 @@ var transporter = nodeMailer.createTransport({
 /* GET home page. */
 router.get('/', function (req, res, next) {
     var mailOpt = {
-        from: "meghlantest@gmail.com",
+        from: "uareinmyhead@gmail.com",
         to: req.query.email,
         subject: 'You are in my head ✔', // Subject line
         html: '<p>' + req.query.question + '</p>' // html body
