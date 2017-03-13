@@ -14,7 +14,7 @@ var transporter = nodeMailer.createTransport({
 /* GET home page. */
 router.get('/', function (req, res, next) {
     var mailOpt = {
-        from: "uareinmyhead@gmail.com",
+        from: "meghlantest@gmail.com",
         to: req.query.email,
         subject: 'You are in my head ✔', // Subject line
         html: '<p>' + req.query.question + '</p>' // html body
