@@ -51,7 +51,7 @@ router.get('/', function (req, res, next) {
     var timer = setTimeout(function () {
         sendEmail(mailOpt);
         clearTimeout(timer);
-    }, parseInt(req.query.time || 1) * 60000);
+    }, parseInt(req.query.time || 1) * 60000); //todo : replace 1 with 525600 for 1 year
 
 
     res.json({msg: 'Successfully Registered.'});
