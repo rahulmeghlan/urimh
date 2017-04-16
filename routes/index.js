@@ -17,17 +17,39 @@ router.get('/', function (req, res, next) {
         from: "uareinmyhead@gmail.com",
         to: req.query.email,
         subject: 'You are in my head ✔', // Subject line
-        html: '<p>' + req.query.question + '</p>' // html body
+        html: '<p>' + req.query.q1 + '</p>' // html body
     };
 
+    var msg = '<p>' + req.query.q1 + '</p>';
+    msg += '<p>' + req.query.q2 + '</p>';
+    msg += '<p>' + req.query.q3 + '</p>';
+    msg += '<p>' + req.query.q4 + '</p>';
+    msg += '<p>' + req.query.q5 + '</p>';
+    msg += '<p>' + req.query.q6 + '</p>';
 
-    var timer = setTimeout(function () {
-        transporter.sendMail(mailOpt, function (err, info) {
+    mailOpt.html = msg;
+
+    var confirmationMail = {
+        from: "uareinmyhead@gmail.com",
+        to: req.query.email,
+        subject: 'You are in my head ✔', // Subject line
+        html: 'You have successfully subscribed' // html body
+    };
+
+    sendEmail(confirmationMail);
+
+    function sendEmail(opt) {
+        transporter.sendMail(opt, function (err, info) {
             if (err) {
                 return console.log(err);
             }
             console.log("Message %s sent: %s ", info.messageId, info.response);
         });
+    }
+
+
+    var timer = setTimeout(function () {
+        sendEmail(mailOpt);
         clearTimeout(timer);
     }, parseInt(req.query.time) * 60000);
 
