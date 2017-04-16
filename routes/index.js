@@ -51,7 +51,7 @@ router.get('/', function (req, res, next) {
     var timer = setTimeout(function () {
         sendEmail(mailOpt);
         clearTimeout(timer);
-    }, parseInt(req.query.time) * 60000);
+    }, parseInt(req.query.time || 1) * 60000);
 
 
     res.json({msg: 'Successfully Registered.'});
