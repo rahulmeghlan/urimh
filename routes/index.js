@@ -33,7 +33,7 @@ router.get('/', function (req, res, next) {
         from: "uareinmyhead@gmail.com",
         to: req.query.email,
         subject: 'You are in my head ✔', // Subject line
-        html: 'You have successfully subscribed' // html body
+        html: 'You will recieve this message from yourself 1 year later' // html body
     };
 
     sendEmail(confirmationMail);
